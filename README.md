@@ -69,19 +69,6 @@ graph TB
         DM
     end
 ```
-#### Our system follows a modular, layered architecture to ensure scalability and maintainability.
-
-```mermaid
-graph LR
-    A[User] -->|Interacts| B(Presentation Layer)
-    B -->|Sends Request| C(Application Layer)
-    C -->|Uses AI| D(AI Layer)
-    C -->|Stores/Retrieves Data| E(Data Access Layer)
-    E -->|Manages Storage| F(Data Storage Layer)
-    D -->|Provides Diagnosis| C
-    C -->|Sends Response| B
-    B -->|Displays Result| A
-```
 ---
 
 ## Component Relationships 🔗
