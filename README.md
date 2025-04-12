@@ -10,33 +10,66 @@ Welcome to our hackathon project! This repository contains the source code and d
 - **Tracks:** Web Development, Artificial Intelligence  
 - **Team Name:** Pseudonerds  
 - **Submission Date:** April 13, 2025  
-- **GitHub Repository:** [https://github.com/Rudra00codes/ai-health-kiosks](https://github.com/Rudra00codes/ai-health-kiosks)  
-- **Presentation:** [Link to PPT](https://github.com/yourusername/ai-health-kiosks/blob/main/presentation.pptx)  
-- **Video Pitch:** [Link to Video](https://youtu.be/yourvideolink)  
+- **GitHub Repository:** [https://github.com/Rudra00codes/Pseudonerds](https://github.com/Rudra00codes/Pseudonerds)
+
+- **Prototype Video:** [Link to Video](https://www.loom.com/share/e8d610c45aab4b1188b054049492b54d?sid=bb0a2294-4578-46ad-a0f5-ee2fae2839c1) The prototype video showcases the initial stages of our project. It doesn't include all the features and functionalities yet.   
 
 ## Problem Statement 🤔
 Rural India faces a dual challenge:  
-- **Underutilized CSCs:** Approximately 60% of India’s 550,000 Common Service Centers (CSCs) lack consistent public engagement, limiting their potential ([India: number of Common Services Centre 2023 | Statista](https://www.statista.com/statistics/1236144/india-number-of-common-services-centres/)).  
+- **Underutilized CSCs:** Approximately 60% of India’s 550,000 Common Service Centers (CSCs) lack consistent public engagement, limiting their potential for health services.
 - **Healthcare Access Gap:** An estimated 70% of rural populations lack affordable diagnostic services due to infrastructure and cost barriers (NSSO 2023 estimate, per project report).  
 
-This gap results in delayed diagnoses, high out-of-pocket expenses, and overburdened healthcare systems, necessitating an innovative, scalable solution.
+This healthcare gap results in delayed diagnoses, high medical costs, and improper treatment in rural areas - challenges our AI-powered health kiosks are designed to solve through accessible diagnostic services at CSCs.
 
 ---
 
 ## Our Solution 🚀
-We propose transforming existing CSC computers into **AI-Powered Health Kiosks** to bridge rural healthcare gaps. Our solution includes:  
+#### We propose transforming existing CSC computers into **AI-Powered Health Kiosks** to bridge rural healthcare gaps. Our solution includes:  
+
 - **AI Diagnostics:** Immediate symptom-based diagnostics using TensorFlow Lite, even offline.  
 - **Multilingual Support:** 10+ Indian languages via Bhashini API for inclusivity.  
 - **Teleconsultation:** Real-time audio/video consultations with remote doctors using WebRTC/Jitsi Meet.  
 - **ABDM Integration:** Secure health record linkage with Ayushman Bharat Digital Mission (ABDM).  
 - **Offline-First Design:** Syncs data when connectivity resumes, ideal for remote areas.  
 
-This zero-cost, reusable infrastructure approach empowers rural communities with accessible healthcare.
+#### This zero-cost, reusable infrastructure approach empowers rural communities with accessible healthcare.
 
 ---
 
 ## System Architecture 🏗️
-Our system follows a modular, layered architecture to ensure scalability and maintainability.
+#### Our system follows a modular, layered architecture optimized for CSC deployment.
+
+```mermaid
+graph TB
+    U[User/Patient] -->|Interacts| F[Frontend Layer]
+    F -->|React UI| ML[Multilingual Layer]
+    F -->|React Components| TC[Teleconsultation Module]
+    
+    ML -->|Bhashini API| B[Backend Layer]
+    TC -->|WebRTC/Jitsi| B
+    F -->|REST APIs| B
+    
+    B -->|Flask/Django| AI[AI Diagnostic Layer]
+    B -->|Authentication| Auth[Auth Service]
+    B -->|Data Management| D[Data Layer]
+    
+    AI -->|TensorFlow Lite| DM[Diagnostic Models]
+    AI -->|Offline Processing| Cache[Local Cache]
+    
+    D -->|SQLite| DB[(Encrypted Database)]
+    D -->|ABDM Integration| ABDM[Health Records]
+    
+    subgraph Offline Support
+        Cache
+        DB
+    end
+    
+    subgraph Cloud Services
+        ABDM
+        DM
+    end
+```
+#### Our system follows a modular, layered architecture to ensure scalability and maintainability.
 
 ```mermaid
 graph LR
