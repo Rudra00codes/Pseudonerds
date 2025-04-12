@@ -31,3 +31,4 @@ Thumbs.db
 # CUDNN files
 temp_cudnn/
 *.dll
+cudnn_*.dll
