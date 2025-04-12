@@ -39,6 +39,11 @@ This healthcare gap results in delayed diagnoses, high medical costs, and improp
 ## System Architecture 🏗️
 #### Our system follows a modular, layered architecture optimized for CSC deployment.
 
+![System Architecture](./public/architecture.png)
+
+<details>
+<summary>Click to see the mermaid architecture view</summary>
+
 ```mermaid
 graph TB
     U[User/Patient] -->|Interacts| F[Frontend Layer]
@@ -69,7 +74,10 @@ graph TB
         DM
     end
 ```
+</details>
+
 ---
+
 
 ## Component Relationships 🔗
 
@@ -101,13 +109,13 @@ graph TB
 
 ## Technology Stack 💾
 
-- **Frontend:** React (for dynamic, responsive UI)
-- **Backend:** Python (Flask/Django) with RESTful APIs
-- **AI:** TensorFlow Lite (optimized for low-resource devices)
-- **Multilingual:** Bhashini API (supports 10+ Indian languages)
-- **Teleconsultation:** WebRTC/Jitsi Meet (open-source video/audio)
-- **Database:** ABDM-compliant SQLite with AES-256 encryption
-- **Dev Tools:** Git, Docker (for containerization), Postman (API testing)
+- **Frontend:** 🎨 React (for dynamic, responsive UI)
+- **Backend:** 🐍 Python (Flask/Django) with RESTful APIs
+- **AI:** 🤖 TensorFlow Lite (optimized for low-resource devices)
+- **Multilingual:** 🗣️ Bhashini API (supports 10+ Indian languages)
+- **Teleconsultation:** 📞 WebRTC/Jitsi Meet (open-source video/audio)
+- **Database:** 🔒 ABDM-compliant SQLite with AES-256 encryption
+- **Dev Tools:** 🛠️ Git, 🐳 Docker (for containerization), ✉️ Postman (API testing)
 
 ## Getting Started 🛠️
 
