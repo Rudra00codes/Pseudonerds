@@ -4,13 +4,15 @@ const path = require('path');
 // Start the backend
 const backend = spawn('cmd.exe', ['/c', 'cd backend && python main.py'], {
   stdio: 'inherit',
-  shell: true
+  shell: true,
+  cwd: path.resolve(__dirname)
 });
 
 // Start the frontend
 const frontend = spawn('cmd.exe', ['/c', 'npm run dev'], {
   stdio: 'inherit',
-  shell: true
+  shell: true,
+  cwd: path.resolve(__dirname)
 });
 
 // Handle process termination
