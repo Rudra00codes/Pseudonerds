@@ -12,7 +12,7 @@ Welcome to our hackathon project! This repository contains the source code and d
 - **Submission Date:** April 13, 2025  
 - **GitHub Repository:** [https://github.com/Rudra00codes/Pseudonerds](https://github.com/Rudra00codes/Pseudonerds)
 
-- **Prototype Video:** [Link to Video](https://www.loom.com/share/e8d610c45aab4b1188b054049492b54d?sid=bb0a2294-4578-46ad-a0f5-ee2fae2839c1) The prototype video showcases the initial stages of our project. It doesn't include all the features and functionalities yet.   
+- **Prototype Video:** [Link to Video](https://www.loom.com/share/3e3edf3f9a044c1bbb6fd9f261e236a7?sid=9f88cc03-f5c6-46bd-825a-6d42f989d59c) 
 
 ## Problem Statement 🤔
 Rural India faces a dual challenge:  
