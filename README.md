@@ -1,6 +1,6 @@
 # AI-Powered Health Kiosks: Transforming CSCs for Rural India 🌱💻
 
-![Pseudonerds Health Kiosk](./public/Banner.png)
+![Pseudonerds Health Kiosk](./frontend-react/public/Banner.png)
 
 Welcome to our hackathon project! This repository contains the source code and documentation for an innovative solution aimed at revolutionizing rural healthcare in India by leveraging AI and existing infrastructure.
 
@@ -39,7 +39,7 @@ This healthcare gap results in delayed diagnoses, high medical costs, and improp
 ## System Architecture 🏗️
 #### Our system follows a modular, layered architecture optimized for CSC deployment.
 
-![System Architecture](./public/architecture.png)
+![System Architecture](./frontend-react/public/architecture.png)
 
 <details>
 <summary>Click to see the mermaid architecture view</summary>
