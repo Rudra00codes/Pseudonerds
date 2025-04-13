@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Diagnosis Model Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .symptom-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .symptom-item {
+            background-color: #f0f0f0;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .symptom-item.selected {
+            background-color: #007bff;
+            color: white;
+        }
+        .result-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        .severity-high {
+            color: #d9534f;
+            font-weight: bold;
+        }
+        .severity-medium {
+            color: #f0ad4e;
+            font-weight: bold;
+        }
+        .severity-low {
+            color: #5cb85c;
+            font-weight: bold;
+        }
+        .loading {
+            display: none;
+            margin-top: 20px;
+        }
+        .error {
+            color: red;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>AI Diagnosis Model Test</h1>
+    
+    <div>
+        <h2>Select Symptoms</h2>
+        <div class="symptom-list" id="symptomList">
+            <!-- Symptoms will be populated here -->
+        </div>
+        
+        <div>
+            <label for="languageSelect">Language:</label>
+            <select id="languageSelect">
+                <option value="en">English</option>
+                <option value="hi">Hindi</option>
+                <option value="ta">Tamil</option>
+                <option value="te">Telugu</option>
+                <option value="bn">Bengali</option>
+            </select>
+        </div>
+        
+        <button id="diagnoseBtn">Get Diagnosis</button>
+        
+        <div class="loading" id="loadingIndicator">
+            Processing diagnosis...
+        </div>
+        
+        <div class="error" id="errorMessage"></div>
+        
+        <div id="diagnosisResults"></div>
+    </div>
+    
+    <script>
+        // Common symptoms
+        const symptoms = [
+            "fever", "cough", "headache", "fatigue", "sore throat",
+            "runny nose", "body aches", "chills", "nausea", "vomiting",
+            "diarrhea", "shortness of breath", "chest pain", "dizziness", "rash",
+            "joint pain", "back pain", "abdominal pain", "loss of appetite", "weight loss",
+            "increased thirst", "frequent urination", "blurred vision", "numbness", "tingling"
+        ];
+        
+        // Selected symptoms
+        const selectedSymptoms = new Set();
+        
+        // Populate symptom list
+        const symptomList = document.getElementById('symptomList');
+        symptoms.forEach(symptom => {
+            const item = document.createElement('div');
+            item.className = 'symptom-item';
+            item.textContent = symptom;
+            item.addEventListener('click', () => {
+                if (selectedSymptoms.has(symptom)) {
+                    selectedSymptoms.delete(symptom);
+                    item.classList.remove('selected');
+                } else {
+                    selectedSymptoms.add(symptom);
+                    item.classList.add('selected');
+                }
+            });
+            symptomList.appendChild(item);
+        });
+        
+        // Diagnose button
+        document.getElementById('diagnoseBtn').addEventListener('click', async () => {
+            if (selectedSymptoms.size === 0) {
+                document.getElementById('errorMessage').textContent = 'Please select at least one symptom';
+                return;
+            }
+            
+            document.getElementById('errorMessage').textContent = '';
+            document.getElementById('loadingIndicator').style.display = 'block';
+            document.getElementById('diagnosisResults').innerHTML = '';
+            
+            const language = document.getElementById('languageSelect').value;
+            
+            try {
+                const response = await fetch('http://localhost:5000/api/diagnose/test', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        symptoms: Array.from(selectedSymptoms),
+                        language: language
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error ${response.status}`);
+                }
+                
+                const data = await response.json();
+                displayResults(data);
+            } catch (error) {
+                document.getElementById('errorMessage').textContent = `Error: ${error.message}`;
+            } finally {
+                document.getElementById('loadingIndicator').style.display = 'none';
+            }
+        });
+        
+        // Display diagnosis results
+        function displayResults(results) {
+            const resultsContainer = document.getElementById('diagnosisResults');
+            
+            if (Array.isArray(results)) {
+                results.forEach((result, index) => {
+                    resultsContainer.appendChild(createResultCard(result, index));
+                });
+            } else {
+                resultsContainer.appendChild(createResultCard(results, 0));
+            }
+        }
+        
+        function createResultCard(result, index) {
+            const card = document.createElement('div');
+            card.className = 'result-card';
+            
+            const title = document.createElement('h3');
+            title.textContent = index === 0 ? 'Primary Diagnosis' : `Alternative Diagnosis ${index}`;
+            card.appendChild(title);
+            
+            const diagnosis = document.createElement('p');
+            diagnosis.innerHTML = `<strong>Condition:</strong> ${result.diagnosis}`;
+            card.appendChild(diagnosis);
+            
+            const confidence = document.createElement('p');
+            confidence.innerHTML = `<strong>Confidence:</strong> ${(result.confidence * 100).toFixed(1)}%`;
+            card.appendChild(confidence);
+            
+            const severity = document.createElement('p');
+            severity.innerHTML = `<strong>Severity:</strong> <span class="severity-${result.severity.toLowerCase()}">${result.severity}</span>`;
+            card.appendChild(severity);
+            
+            if (result.recommendations && result.recommendations.length > 0) {
+                const recsTitle = document.createElement('p');
+                recsTitle.innerHTML = '<strong>Recommendations:</strong>';
+                card.appendChild(recsTitle);
+                
+                const recsList = document.createElement('ul');
+                result.recommendations.forEach(rec => {
+                    const item = document.createElement('li');
+                    item.textContent = rec;
+                    recsList.appendChild(item);
+                });
+                card.appendChild(recsList);
+            }
+            
+            return card;
+        }
+    </script>
+</body>
+</html>
