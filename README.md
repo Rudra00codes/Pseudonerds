@@ -123,8 +123,8 @@ graph TB
 
 Clone the repository and set up the project locally:
 ```bash
-git clone https://github.com/Rudra00codes/ai-health-kiosks.git
-cd ai-health-kiosks
+git clone https://github.com/Rudra00codes/Pseudonerds.git
+cd Pseudonerds
 ```
 
 ### Setup Instructions
@@ -191,10 +191,10 @@ cd ai-health-kiosks
 - **📈 Scalability:** Expand to all 550,000 CSCs with government partnerships
 
 ## Team Details 👥
-- **👨‍💻 Rudra Pratap Singh** - *Lead Developer*
-- **🤖 Yugandhar Bhardwaj** - *AI Specialist*
-- **🔬 Aditya Punj** - *Healthcare Research Specialist*
-- **🎨 Raj Bardhan Singh** - *UI/UX Designer & Creative Lead*
+- **👨‍💻 Rudra Pratap Singh** - *Lead Developer* ([@Rudra00codes](https://github.com/Rudra00codes))
+- **🤖 Yugandhar Bhardwaj** - *AI Specialist* ([@yugandharb](https://github.com/yugandhar))
+- **🔬 Aditya Punj** - *Healthcare Research Specialist* ([@adityapunj](https://github.com/Adityapunj639))
+- **🎨 Raj Bardhan Singh** - *UI/UX Designer & Creative Lead* ([@rajbardhan](https://github.com/RAj2027))
 
 ## Acknowledgements 🙏
 We extend our heartfelt gratitude to:
