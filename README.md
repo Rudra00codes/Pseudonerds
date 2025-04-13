@@ -12,9 +12,9 @@ Welcome to our hackathon project! This repository contains the source code and d
 - **Submission Date:** April 13, 2025  
 - **GitHub Repository:** [https://github.com/Rudra00codes/Pseudonerds](https://github.com/Rudra00codes/Pseudonerds)
 
-- **Prototype Video:** Scan the QR code below to watch our project demo:
+- **Prototype Video:** Scan the QR code below or [click here](https://www.loom.com/share/4a03f39b47ef4ca0a4578bf45f2dd39d?sid=cb39ab64-c980-4694-899e-b36f63754692) to watch our project demo:
 
-![Prototype Video QR Code](./frontend-react/public/videosubmissionQR.png)
+<img src="./frontend-react/public/videosubmissionQR.png" alt="Prototype Video QR Code" width="200" height="200" style="display: block; margin: 20px 0;"/>
  
 
 ## Problem Statement 🤔
