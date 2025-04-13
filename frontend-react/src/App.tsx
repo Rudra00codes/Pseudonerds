@@ -5,6 +5,7 @@ import './App.css';
 
 import Sidebar from './components/Sidebar';
 import Dashboard from './components/Dashboard';
+import { Toaster } from './components/ui/toaster';
 import { useToast } from './components/ui/use-toast';
 
 type BackendStatus = 'checking' | 'connected' | 'error' | 'disconnected';
@@ -17,6 +18,9 @@ const theme = createTheme({
     },
     secondary: {
       main: '#dc004e',
+    },
+    background: {
+      default: '#f5f5f5',
     },
   },
 });
@@ -43,27 +47,9 @@ const App: React.FC = () => {
     };
     
     checkBackendHealth();
-    const interval = setInterval(checkBackendHealth, 30000); // Check every 30 seconds
-
+    const interval = setInterval(checkBackendHealth, 30000);
     return () => clearInterval(interval);
   }, [toast]);
-
-  const handleNavigate = (page: PageType) => {
-    setCurrentPage(page);
-  };
-
-  const getStatusColor = (status: BackendStatus): string => {
-    switch (status) {
-      case 'connected':
-        return '#4caf50';
-      case 'error':
-        return '#f44336';
-      case 'disconnected':
-        return '#ff9800';
-      default:
-        return '#757575';
-    }
-  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -94,7 +80,7 @@ const App: React.FC = () => {
           </Toolbar>
         </AppBar>
         
-        <Sidebar onNavigate={handleNavigate} currentPage={currentPage} />
+        <Sidebar onNavigate={setCurrentPage} currentPage={currentPage} />
         
         <Box component="main" sx={{ 
           flexGrow: 1, 
@@ -107,6 +93,7 @@ const App: React.FC = () => {
           </Container>
         </Box>
       </Box>
+      <Toaster />
     </ThemeProvider>
   );
 };
